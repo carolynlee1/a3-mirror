@@ -27,7 +27,7 @@
 # Write your `students` data.frame to a new .csv file inside your data/ directory with the filename `grades.csv`. Make sure not to write row names.
 
 
-################################### Loading R Data, 28 points ###################################
+################################### Loading R Data (28 points) ###################################
 
 # In this section, you'll work with some data that comes built into the RStudio environment.
 # Load the `Titanic` data set. You may also want to use RStudio to `View()` it to learn about its rows and columns.
@@ -93,7 +93,7 @@
 
 # Write your `life.expectancy` data.frame to a new .csv file to your data/ directory with the filename `life_expectancy_with_change.csv`. Make sure not to write row names.
 
-################################### Challenge ###################################
+################################### Challenge (10 points) ###################################
 
 # In a single line of code, create a variable that has the name of the region with the 
 # highest average change in life expectancy between the two time points. 
