@@ -95,7 +95,16 @@
 
 ################################### Challenge (10 points) ###################################
 
-# In a single line of code, create a variable that has the name of the region with the 
+# Create a variable that has the name of the region with the 
 # highest average change in life expectancy between the two time points. 
 # To do this, you'll need to compute the average change across the countries in each region, and then 
 # compare the averages across regions. Feel free to use any library of your choice, or base R functions.
+
+
+# Create a *well labeled* plot (readable title, x-axis, y-axis) showing
+# Life expectancy in 1960 v.s. Change in life expectancy
+# Programmatically save (i.e., with code, not using the Export button) your graph as a .png file in your repo 
+# Then, in a comment below, provide an *interpretation* of the relationship you observe
+# Feel free to use any library of your choice, or base R functions.
+
+# What is your interpretation of the observed relationship?
