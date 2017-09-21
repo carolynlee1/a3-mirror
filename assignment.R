@@ -29,11 +29,11 @@
 
 ################################### Loading R Data (28 points) ###################################
 
-# In this section, you'll work with some data that comes built into the RStudio environment.
+# In this section, you'll work with some data that comes built into the r environment.
 # Load the `Titanic` data set. You may also want to use RStudio to `View()` it to learn about its rows and columns.
 
 # This data set actually loads in a format called a *table*
-# Table documentation: https://cran.r-project.org/web/packages/data.table/data.table.pdf
+# You can use ?table to learn more about tables.
 # This is slightly different than a data frame. Use the `is.data.frame()` function to confirm this.
 
 # You should convert the `Titanic` variable into a data frame; you can use the `data.frame()` function or `as.data.frame()`
