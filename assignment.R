@@ -16,7 +16,8 @@
 
 # Create a variable `num.students` that contains the number of rows in your data.frame `students`
 
-# Create a variable `num.courses` that contains the number of columns in your data.frame `students` minus one (b/c of their names)
+# Create a variable `num.courses` that contains the number of columns in your data.frame `students` minus one 
+# Make sure to subtract 1 from the number of columns to account for the `names` column
 
 # Add a new column `grade.diff` to your dataframe, which is equal to `students$math.grades` minus `students$spanish.grades`
 
