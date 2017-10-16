@@ -3,30 +3,32 @@
 ################################### Set up (2 Points) ###################################
 
 # Before you get started, make sure to set your working directory using the tilde (~)
+setwd("~/info201/a3-using-data-carolynlee1/data")
 
 ################################### DataFrame Manipulation (20 Points) ###################################
 
 # Create a vector `first.names` with 5 names in it
+first.names <- c("john","tom","tim","sam","dave")
 
 # Create a vector `math.grades` with 5 hypothetical grades (0 - 100) in a math course (that correspond to the 5 names above)
-
+math.grades <- c(90,60,45,90,100)
 # Create a vector `spanish.grades` with 5 hypothetical grades (0 - 100) in a Spanish course (that correspond to the 5 names above)
-
+spanish.grades <- c(55,65,75,85,95)
 # Create a data.frame variable `students` by combining your vectors `first.names`, `math.grades`, and `spanish.grades`
-
+students <- data.frame(first.names, math.grades, spanish.grades)
 # Create a variable `num.students` that contains the number of rows in your data.frame `students`
-
+num.stduents <- nrow(students)
 # Create a variable `num.courses` that contains the number of columns in your data.frame `students` minus one 
 # Make sure to subtract 1 from the number of columns to account for the `names` column
-
+num.courses <- ncol(students) - 1
 # Add a new column `grade.diff` to your dataframe, which is equal to `students$math.grades` minus `students$spanish.grades`
-
+students$grade.diff <- students$math.grades - students$spanish.grades
 # Add another column `better.at.math` as a boolean (TRUE/FALSE) variable that indicates that a student got a better grade in math
-
+better.at.math <- students$math.grades > students$spanish.grades
 # Create a variable `num.better.at.math` that is the number (i.e., one numeric value) of students better at math
-
+num.better.at.math <- nrow(students[students$math.grades>students$spanish.grades, ]) 
 # Write your `students` data.frame to a new .csv file inside your data/ directory with the filename `grades.csv`. Make sure not to write row names.
-
+write.csv(students, file = "grades.csv", row.names=FALSE)
 
 ################################### Loading R Data (28 points) ###################################
 
