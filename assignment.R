@@ -54,6 +54,7 @@ sum(child)
 # Create a variable `most.lost` which has row with the largest absolute number of losses (people who did not survive).
 # Tip: you can use multiple statements (lines of code), such as to make "intermediate" sub-frames (similar to what you did with the `children` variables)
 max.freq = max(titanic.data$Freq)
+most.lost <- titanic.data[titanic.data$Freq == max.freq, ]
 
 # Define a function called `SurvivalRate` that takes in a ticket class (e.g., "1st", "2nd") as an argument.
 # This function should return a sentence describing the total survival rate of men vs. "women and children" in that ticketing class.
@@ -61,10 +62,22 @@ max.freq = max(titanic.data$Freq)
 # The approach you take to generating the sentence to return is up to you. A good solution will likely utilize 
 # intermediate variables (subsets of data frames) and filtering to produce the required data.
 # Avoid using a "loop" in R!
+SurvivalRate <- function(ticket.class) {
+freq.data <- titanic.data$Freq[titanic.data$Class == ticket.class]
+wc.total <- sum(freq.data[c(1,2,4,5,6,8) ])
+wc.survived <- sum(freq.data[c(5,6,8)])
+wc.percentage <- paste0(round(wc.survived / wc.total * 100, digits = 0), "%")
+men.total <- sum(freq.data[c(3,7)])
+men.survived <- freq.data[7]
+men.percent <- paste0(round(men.survived / men.total * 100, digits = 0), "%")
+paste("Of", ticket.class, "class,", wc.percentage, "of women and children survived and", men.percent, "of men survived.")
+}
 
 # Call your `SurvivalRate()` function on each of the ticketing classes (`Crew`, `1st`, `2nd`, and `3rd`)
-
-
+SurvivalRate("Crew")
+SurvivalRate("1st")
+SurvivalRate("2nd")
+SurvivalRate("3rd")
 ################################### Reading in Data (40 points) ###################################
 # In this section, we'll read in a .csv file, which is essentially a tabular row/column layout 
 # This is like Microsoft Excel or Google Docs, but without the formatting. 
@@ -119,12 +132,12 @@ BiggerChange <- function(name1, name2) {
     smaller.country = name1
   }
   country.diff <- bigger.num - smaller.num
-  paste("The country with the bigger change in life expectancy was", bigger.country, " (gain=", round(bigger.num, digits = 2), "),whose life expectancy grew by", round(country.diff,digits = 2), "years more than", 
+  paste0("The country with the bigger change in life expectancy was", bigger.country, " (gain=", round(bigger.num, digits = 2), "), whose life expectancy grew by ", round(country.diff,digits = 2), " years more than ", 
         smaller.country, "'s (gain=", round(smaller.num, digits = 2), ").")
 }
 
 # Using your `BiggerChange` funciton, create a variable `usa.or.france` that describes who had a larger gain in life expectancy (the United States or France)
-BiggerChange("France", "United States")
+usa.or.france <- BiggerChange("France", "United States")
 # Write your `life.expectancy` data.frame to a new .csv file to your data/ directory with the filename `life_expectancy_with_change.csv`. Make sure not to write row names.
 write.csv(life.expectancy, file = "life_expectancy_with_change.csv", row.names = FALSE)
 ################################### Challenge (10 points) ###################################
@@ -135,7 +148,7 @@ write.csv(life.expectancy, file = "life_expectancy_with_change.csv", row.names =
 # compare the averages across regions. Feel free to use any library of your choice, or base R functions.
 install.packages("dplyr")
 library("dplyr")
-grouped.regions <- group_by(life.expectancy, region) %>%
+grouped.regions <- group_by(life.expectancy, region) %>% 
 summarize(
   mean = mean(change)
 )
@@ -148,5 +161,9 @@ highest.average <- grouped.regions$region[grouped.regions$mean == max.mean]
 # Programmatically save (i.e., with code, not using the Export button) your graph as a .png file in your repo 
 # Then, in a comment below, provide an *interpretation* of the relationship you observe
 # Feel free to use any library of your choice, or base R functions.
-
+getwd()
+png(filename = "Life expectancy graph.png")
+plot(life.expectancy$le_1960, life.expectancy$change, main="Life expectancy in 1960 vs Change in life expectancy", xlab = "Life expectancy in 1960", ylab = "Change in life expectancy")
+dev.off()
 # What is your interpretation of the observed relationship?
+# There is a negative correlation between life expectancy in 1960 and the change in life expectancy, which indicates that the higher the life expectancy, the less it grew over time, and vice versa. 
